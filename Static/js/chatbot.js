@@ -6,17 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentBody = document.getElementById('chatbot-main-content');
     const loader = document.getElementById('chatbot-loader');
     
-    // Expand automatically after 7 seconds
+    // Expand automatically after 3 seconds if not previously closed by user
     setTimeout(() => {
-        if (!chatbot.classList.contains('expanded')) {
+        if (!chatbot.classList.contains('expanded') && localStorage.getItem('chatbot-dismissed') !== 'true') {
             expandChatbot();
-            
-            // Automatically close 5 seconds after it auto-opens
-            setTimeout(() => {
-                chatbot.classList.remove('expanded');
-            }, 5000);
         }
-    }, 7000);
+    }, 3000);
 
     chatbot.addEventListener('click', (e) => {
         if (!chatbot.classList.contains('expanded')) {
@@ -27,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         chatbot.classList.remove('expanded');
+        // Remember that user manually closed it, so don't auto-expand on refresh
+        localStorage.setItem('chatbot-dismissed', 'true');
     });
 
     function expandChatbot() {

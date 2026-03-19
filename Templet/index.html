@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <title>Predictor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link href="/Static/css/chatbot.css?v=5" rel="stylesheet">
+
     <style>
         :root {
             --accent-color: #007bff;
@@ -16,9 +16,12 @@
         }
 
         [data-bs-theme="dark"] {
-            --accent-color: #00bedd; /* Slightly reduced brightness/saturation from #00d2ff */
-            --accent-glow: rgba(0, 190, 221, 0.35); /* Reduced from 0.4 */
-            --hover-border: rgba(0, 190, 221, 0.5); /* Reduced from 0.6 */
+            --accent-color: #00bedd;
+            /* Slightly reduced brightness/saturation from #00d2ff */
+            --accent-glow: rgba(0, 190, 221, 0.35);
+            /* Reduced from 0.4 */
+            --hover-border: rgba(0, 190, 221, 0.5);
+            /* Reduced from 0.6 */
         }
 
         body {
@@ -250,14 +253,14 @@
 
         .footer {
             margin-top: auto;
-            padding: 50px 0 20px;
-            color: var(--bs-secondary-color);
-            border-top: 1px solid var(--bs-border-color);
-            background: rgba(0, 0, 0, 0.02);
+            padding: 60px 0 30px;
+            background-color: #212529 !important;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         [data-bs-theme="dark"] .footer {
-            background: rgba(255, 255, 255, 0.02);
+            background-color: #212529 !important;
         }
 
         .footer-heading {
@@ -371,6 +374,7 @@
             height: 24px;
             fill: currentColor;
         }
+
         /* Nav Buttons Styles */
         .top-nav-controls {
             position: fixed;
@@ -428,25 +432,83 @@
         }
 
         @keyframes blink-green {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+            }
+
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+            }
         }
 
         @keyframes blink-red {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+            }
+
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+            }
         }
 
         .blink-positive {
             background: #28a745 !important;
-            animation: blink-green 2s infinite;
+            animation: blink-green 7s infinite;
         }
 
         .blink-negative {
             background: #dc3545 !important;
-            animation: blink-red 2s infinite;
+            animation: blink-red 7s infinite;
+        }
+
+        .search-form .form-control {
+            border-radius: 30px 0 0 30px;
+            padding-left: 25px;
+            border-right: none;
+            box-shadow: none;
+        }
+
+        .search-form .btn {
+            border-radius: 0 30px 30px 0;
+            padding-right: 25px;
+            font-weight: 600;
+        }
+
+        .analysis-card {
+            background: var(--bs-body-bg);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .chart-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        #analysis-results {
+            scroll-margin-top: 100px;
         }
 
         /* Auth Dropdown Styles */
@@ -472,23 +534,129 @@
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* News Modal Scroll */
+        /* News Modal Enhancement */
         .news-list {
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
+            background: var(--bs-body-bg);
         }
-        .news-item {
-            padding: 15px;
+
+        .news-filters {
+            display: flex;
+            gap: 8px;
+            padding: 12px 15px;
+            overflow-x: auto;
             border-bottom: 1px solid var(--bs-border-color);
-            transition: background 0.2s;
+            background: rgba(var(--bs-tertiary-bg-rgb), 0.5);
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
+
+        .news-filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--bs-border-color);
+            background: var(--bs-body-bg);
+            font-size: 0.85rem;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--bs-secondary-color);
+            font-weight: 500;
+        }
+
+        .filter-chip.active {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 10px var(--accent-glow);
+        }
+
+        .news-item {
+            padding: 20px;
+            border-bottom: 1px solid var(--bs-border-color);
+            transition: all 0.2s;
+            position: relative;
+        }
+
         .news-item:hover {
             background: rgba(var(--bs-tertiary-bg-rgb), 0.3);
         }
+
+        .news-badge {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-right: 8px;
+        }
+
+        .impact-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .trend-icon {
+            font-size: 1.1rem;
+        }
+
+        .news-meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .news-analysis {
+            background: rgba(var(--bs-tertiary-bg-rgb), 0.6);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .news-action-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .news-btn-sm {
+            flex: 1;
+            padding: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .news-btn-sm:hover {
+            opacity: 0.9;
+            color: #fff;
+        }
+
         .news-tag {
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -497,12 +665,47 @@
             margin-bottom: 5px;
             display: inline-block;
         }
+
+        .fw-extrabold {
+            font-weight: 800;
+        }
+
+        .extra-small {
+            font-size: 0.7rem;
+        }
+
+        .last-border-none:last-child {
+            border-bottom: none !important;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .chart-img {
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            background: #fff;
+        }
+
+        .chart-img:hover {
+            transform: scale(1.02);
+        }
+
+        [data-bs-theme="dark"] .chart-img {
+            filter: invert(0.9) hue-rotate(180deg);
+        }
     </style>
 </head>
 
 <body>
     <div class="top-nav-controls">
-        <button class="nav-btn btn-news" id="news-btn" data-bs-toggle="modal" data-bs-target="#newsModal">
+        <button class="nav-btn btn-news" id="news-btn" data-bs-toggle="modal" data-bs-target="#newsModal"
+            onclick="fetchFinanceNews()">
             <span class="news-indicator" id="news-indicator"></span>
             News
         </button>
@@ -514,142 +717,7 @@
 
     <canvas id="particles-canvas"></canvas>
 
-    <!-- AI Chatbot Widget -->
-    <div id="ai-chatbot-widget">
-        <!-- Floating Circle Icon -->
-        <div class="chatbot-icon-container">
-            <svg class="chatbot-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 12 2m0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-3 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4m6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-            </svg>
-        </div>
 
-        <!-- Expanded Chatbot Layout -->
-        <div class="chatbot-content">
-            <div class="chatbot-header">
-                <div class="chatbot-title">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 12 2m0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-3 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4m6 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-                    </svg>
-                    AI Prediction Engine
-                </div>
-                <button class="chatbot-close" id="chatbot-close">&times;</button>
-            </div>
-
-            <div id="chatbot-loader" class="loader">
-                <div class="spinner"></div>
-            </div>
-
-            <div id="chatbot-main-content" class="chatbot-body hidden">
-                <!-- Top 4 Stocks -->
-                <div class="prediction-section-title">Top Gainers Prediction <span class="prediction-timeline">Timeline:
-                        <span class="timeline-value">Today</span></span></div>
-
-                <div class="prediction-card" data-symbol="RELIANCE">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">RELIANCE</span>
-                        <span class="prediction-current-price">₹--</span>
-                        <span class="prediction-value-up">▲ <span class="val" data-base="1.2">1.2</span>%</span>
-                    </div>
-                </div>
-                <div class="prediction-card" data-symbol="TCS">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">TCS</span>
-                        <span class="prediction-current-price">₹--</span>
-                        <span class="prediction-value-up">▲ <span class="val" data-base="0.8">0.8</span>%</span>
-                    </div>
-                </div>
-                <div class="prediction-card" data-symbol="INFY">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">INFY</span>
-                        <span class="prediction-current-price">₹--</span>
-                        <span class="prediction-value-up">▲ <span class="val" data-base="1.5">1.5</span>%</span>
-                    </div>
-                </div>
-                <div class="prediction-card" data-symbol="HDFCBANK">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">HDFCBANK</span>
-                        <span class="prediction-current-price">₹--</span>
-                        <span class="prediction-value-down">▼ <span class="val" data-base="0.4">0.4</span>%</span>
-                    </div>
-                </div>
-
-                <!-- Hidden Stocks Toggle -->
-                <button id="expand-stocks-btn" class="expand-stocks-btn">Show More Stocks <span>&#9660;</span></button>
-
-                <div id="hidden-stocks-list" class="hidden">
-                    <div class="prediction-card" data-symbol="ICICIBANK">
-                        <div class="prediction-header">
-                            <span class="prediction-asset">ICICIBANK</span>
-                            <span class="prediction-current-price">₹--</span>
-                            <span class="prediction-value-up">▲ <span class="val" data-base="0.9">0.9</span>%</span>
-                        </div>
-                    </div>
-                    <div class="prediction-card" data-symbol="SBIN">
-                        <div class="prediction-header">
-                            <span class="prediction-asset">SBIN</span>
-                            <span class="prediction-current-price">₹--</span>
-                            <span class="prediction-value-up">▲ <span class="val" data-base="1.1">1.1</span>%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Commodities Section -->
-                <div class="prediction-section-title mt-3">Commodities</div>
-                <div class="prediction-card" data-symbol="GC=F">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">Gold</span>
-                        <span class="prediction-current-price">$--</span>
-                        <span class="prediction-value-up">▲ <span class="val" data-base="0.6">0.6</span>%</span>
-                    </div>
-                </div>
-                <div class="prediction-card" data-symbol="SI=F">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">Silver</span>
-                        <span class="prediction-current-price">$--</span>
-                        <span class="prediction-value-up">▲ <span class="val" data-base="1.8">1.8</span>%</span>
-                    </div>
-                </div>
-                <div class="prediction-card" data-symbol="HG=F">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">Copper</span>
-                        <span class="prediction-current-price">$--</span>
-                        <span class="prediction-value-down">▼ <span class="val" data-base="0.2">0.2</span>%</span>
-                    </div>
-                </div>
-
-                <!-- Crypto Section -->
-                <div class="prediction-section-title mt-3">Crypto</div>
-                <div class="prediction-card" data-symbol="BTC-USD">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">Bitcoin (BTC)</span>
-                        <span class="prediction-current-price">$--</span>
-                        <span class="prediction-value-up">▲ <span class="val" data-base="3.5">3.5</span>%</span>
-                    </div>
-                </div>
-                <div class="prediction-card" data-symbol="ETH-USD">
-                    <div class="prediction-header">
-                        <span class="prediction-asset">Ethereum (ETH)</span>
-                        <span class="prediction-current-price">$--</span>
-                        <span class="prediction-value-up">▲ <span class="val" data-base="2.1">2.1</span>%</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- ChatGPT style Chat Input -->
-            <div class="chatbot-footer">
-                <input type="text" class="chatbot-input" placeholder="Ask AI about predictions...">
-                <button class="chatbot-send">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M11 13L2 9L22 2" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- SINGLE SOURCE OF TRUTH BRAND TEMPLATE -->
     <template id="brand-template">
@@ -721,11 +789,137 @@
         <div id="header-brand-container" class="hero-title-wrapper"></div>
         <p class="site-subtitle">Your unified trading ecosystem. Access critical market tools, charts, and analysis
             platforms efficiently from one centralized hub.</p>
+
+        <form method="POST" action="/" class="search-form mx-auto mt-4" style="max-width: 550px;">
+            <div class="input-group">
+                <input type="text" name="stock" class="form-control form-control-lg bg-body border-secondary"
+                    placeholder="Search Stock/Crypto (e.g. RELIANCE, BTC-USD, INFOSYS)" required>
+                <button type="submit" class="btn btn-primary btn-lg px-4">AI Analyze 🔍</button>
+            </div>
+        </form>
     </div>
 
     <!-- Real-Time Ticker Section -->
     <div class="container-fluid mb-4" style="max-width: 1250px;">
         <div id="ticker-container"></div>
+
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show mx-auto mt-3 border-danger shadow-sm"
+            style="max-width: 800px; border-radius: 12px; background: rgba(220, 53, 69, 0.05);">
+            <div class="d-flex align-items-center">
+                <span class="fs-4 me-3">⚠️</span>
+                <div>
+                    <h6 class="alert-heading fw-bold mb-1">Analysis Error</h6>
+                    <p class="mb-0 small">{{ error }}</p>
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        {% if plot_path_ema_20_50 %}
+        <div id="analysis-results" class="mt-5 pt-4">
+            <!-- Professional Header -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                <div>
+                    <h2 class="fw-extrabold mb-0" style="color: var(--bs-body-color); letter-spacing: -1px;">
+                        {{ company_name }} <span class="text-secondary opacity-50 fw-light">({{ stock_symbol }})</span>
+                    </h2>
+                    <div class="d-flex align-items-center gap-3 mt-1">
+                        <h3 class="fw-bold mb-0 text-primary">{{ currency }} {{ current_price }}</h3>
+                        <span class="badge bg-light text-dark border small fw-semibold">LIVE PRICE</span>
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <div class="text-end">
+                        <div class="extra-small text-uppercase fw-bold text-secondary mb-1">Short Term View</div>
+                        <span class="badge bg-{{ short_term_color }} px-3 py-2 fs-6">{{ short_term_view }}</span>
+                    </div>
+                    <div class="text-end ms-3">
+                        <div class="extra-small text-uppercase fw-bold text-secondary mb-1">Long Term View</div>
+                        <span class="badge bg-{{ long_term_color }} px-3 py-2 fs-6">{{ long_term_view }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <!-- Pro Fundamental Grid -->
+                <div class="col-lg-8 col-12">
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
+                            <div class="analysis-card p-3 text-center bg-body-tertiary">
+                                <div class="extra-small text-uppercase text-secondary fw-bold mb-1">52 Week High</div>
+                                <div class="fw-bold fs-5">{{ high_52 }}</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="analysis-card p-3 text-center bg-body-tertiary">
+                                <div class="extra-small text-uppercase text-secondary fw-bold mb-1">52 Week Low</div>
+                                <div class="fw-bold fs-5">{{ low_52 }}</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="analysis-card p-3 text-center bg-body-tertiary">
+                                <div class="extra-small text-uppercase text-secondary fw-bold mb-1">Volume</div>
+                                <div class="fw-bold fs-5">{{ volume }}</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="analysis-card p-3 text-center bg-body-tertiary">
+                                <div class="extra-small text-uppercase text-secondary fw-bold mb-1">P/E Ratio</div>
+                                <div class="fw-bold fs-5">{{ pe_ratio }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Side: News & Dataset -->
+                <div class="col-lg-4 col-12">
+                    <div class="analysis-card p-4 shadow-sm mb-4">
+                        <h5 class="fw-bold mb-4 border-bottom pb-2">Company Insights</h5>
+
+                        <div class="ticker-news-list">
+                            {% if ticker_news %}
+                            {% for news in ticker_news %}
+                            <div class="news-item-mini mb-3 pb-3 border-bottom last-border-none">
+                                <a href="{{ news.link }}" target="_blank" class="text-decoration-none">
+                                    <h6 class="fw-bold text-body small mb-1 line-clamp-2">{{ news.title }}</h6>
+                                </a>
+                                <div class="extra-small text-secondary fw-semibold">
+                                    {{ news.publisher }} • {{ news.provider_publish_time }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <div class="text-center py-4 opacity-50">
+                                <p class="small mb-0">No recent news found for this ticker.</p>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mt-4">
+                            <h6 class="fw-bold small mb-2">Technical Summary</h6>
+                            <div class="p-3 bg-body-tertiary rounded border small">
+                                <p class="mb-2"><strong>Market Cap:</strong> {{ market_cap }}</p>
+                                <p class="mb-0 text-secondary">Neural network suggests a <strong>{{ short_term_view
+                                        }}</strong> bias for the upcoming sessions based on recent volatility patterns.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-top">
+                            <a href="/Static/{{ dataset_link }}" class="btn btn-outline-primary btn-sm w-100 fw-bold"
+                                download>
+                                📊 DOWNLOAD HISTORICAL DATA (.CSV)
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 
     <div class="container-fluid">
@@ -802,8 +996,8 @@
 
             <!-- 7. Dynamic Broker Card (Angel One Default) -->
             <div class="cycle-wrapper dropdown">
-                <button class="broker-cycle-btn" id="cycleBtn" data-bs-toggle="dropdown"
-                    aria-expanded="false" title="Choose Broker" aria-label="Choose Broker">
+                <button class="broker-cycle-btn" id="cycleBtn" data-bs-toggle="dropdown" aria-expanded="false"
+                    title="Choose Broker" aria-label="Choose Broker">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"
                         fill="currentColor">
                         <path
@@ -948,6 +1142,111 @@
         </div>
     </div>
 
+    <!-- About Us & Vision Section (Visible on Main Page) -->
+    <div class="container-fluid py-5"
+        style="background: rgba(var(--bs-tertiary-bg-rgb), 0.2); border-top: 1px solid var(--bs-border-color);">
+        <div class="container-fluid" style="max-width: 1250px;">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4" style="color: var(--bs-body-color);">Predictor – <span
+                            class="text-primary">Your Unified Trading Ecosystem</span></h2>
+                    <p class="text-secondary lead">Predictor is a modern, all-in-one trading platform designed to
+                        simplify the way traders and investors access market tools, insights, and opportunities.</p>
+                    <p class="text-secondary">Our mission is to bring everything you need for smarter trading into one
+                        centralized and easy-to-use platform. We aim to empower traders of all levels by combining
+                        advanced technology, real-time data, and intelligent insights.</p>
+
+                    <div class="row mt-4 g-3">
+                        <div class="col-sm-6">
+                            <div class="p-3 border rounded bg-body">
+                                <h6 class="fw-bold text-primary mb-2">Advanced Tools</h6>
+                                <p class="small text-muted mb-0">Charting, Screening & Analysis</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 border rounded bg-body">
+                                <h6 class="fw-bold text-primary mb-2">AI Insights</h6>
+                                <p class="small text-muted mb-0">Sentiment & Market Predictor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-4 rounded border bg-body shadow-sm">
+                        <h5 class="fw-bold mb-3">Our Core Offerings</h5>
+                        <ul class="text-secondary mb-0">
+                            <li class="mb-2"><strong>Market Integration:</strong> One hub for stocks, crypto, and forex.
+                            </li>
+                            <li class="mb-2"><strong>Strategy Building:</strong> Professional backtesting and rules.
+                            </li>
+                            <li class="mb-2"><strong>Smart Insights:</strong> AI-powered news analysis and signals.</li>
+                            <li><strong>Unified Experience:</strong> Stop switching between 10+ websites.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="max-width: 1250px; padding: 0 20px;">
+            <div class="row mb-2">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div id="footer-brand-container" class="footer-brand d-flex align-items-center mb-0 mt-0"></div>
+                    <h6 class="fw-bold mb-3 mt-3 text-white">Company</h6>
+                    <ul class="footer-list list-unstyled" style="padding-left: 0;">
+                        <li class="mb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"
+                                class="footer-link text-decoration-none" style="color: #a0a8b1;">About Us</a></li>
+                        <li class="mb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#tosModal"
+                                class="footer-link text-decoration-none" style="color: #a0a8b1;">Terms of Service</a>
+                        </li>
+                        <li class="mb-2"><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal"
+                                class="footer-link text-decoration-none" style="color: #a0a8b1;">Privacy & Cookies
+                                Policy</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link text-decoration-none"
+                                style="color: #a0a8b1;">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 mb-4 mb-md-0 pt-2">
+                    <h6 class="fw-bold mb-4 text-white">Information</h6>
+                    <ul class="footer-list list-unstyled" style="padding-left: 0;">
+                        <li class="mb-3"><a href="#" class="footer-link text-decoration-none"
+                                style="color: #a0a8b1;">Contract Specifications</a></li>
+                        <li class="mb-3"><a href="#" data-bs-toggle="modal" data-bs-target="#tradingFeesModal"
+                                class="footer-link text-decoration-none" style="color: #a0a8b1;">Trading Fees</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-2">
+                    <h6 class="fw-bold mb-4 text-white">Resources & Support</h6>
+                    <ul class="footer-list list-unstyled" style="padding-left: 0;">
+                        <li class="mb-3"><a href="#" class="footer-link text-decoration-none"
+                                style="color: #a0a8b1;">Support Center</a></li>
+                        <li class="mb-3"><a href="#" class="footer-link text-decoration-none"
+                                style="color: #a0a8b1;">User Guide</a></li>
+                        <li class="mb-3"><a href="#" class="footer-link text-decoration-none"
+                                style="color: #a0a8b1;">Referral Program</a></li>
+                        <li class="mb-3"><a href="#" class="footer-link text-decoration-none"
+                                style="color: #a0a8b1;">Demo Trading - MT4</a></li>
+                        <li class="mb-3"><a href="#" class="footer-link text-decoration-none"
+                                style="color: #a0a8b1;">Demo Trading - MT5</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 30px 0;">
+            <div class="text-center">
+                <p class="mb-3 fw-bold" style="color: #6c757d; font-size: 0.95rem;">
+                    DISCLAIMER: This platform is for educational purposes only. Not financial advice.
+                </p>
+                <p class="mb-0" style="color: #6c757d; font-size: 0.85rem;">
+                    © 2026 Predictor Unified Trading Dashboard. For time management & easy access.
+                </p>
+            </div>
+        </div>
+    </footer>
+
     <!-- Strategy Modals -->
     <!-- Stocks Modal -->
     <div class="modal fade" id="stocksModal" tabindex="-1" aria-labelledby="stocksModalLabel" aria-hidden="true">
@@ -1027,6 +1326,171 @@
         </div>
     </div>
 
+    <!-- About Us Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="aboutModalLabel">About Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <h4 class="fw-bold mb-3">Welcome to <span class="text-primary">Predictor – Your Unified Trading
+                            Ecosystem</span></h4>
+                    <p class="text-secondary">Predictor is a modern, all-in-one trading platform designed to simplify
+                        the way traders and investors access market tools, insights, and opportunities. Our mission is
+                        to bring everything you need for smarter trading into one centralized and easy-to-use platform.
+                    </p>
+
+                    <h5 class="fw-bold mt-4">Our Vision</h5>
+                    <p class="text-secondary">We aim to empower traders of all levels by combining advanced technology,
+                        real-time data, and intelligent insights. Whether you are a beginner exploring the market or an
+                        experienced trader building strategies, Predictor helps you make more informed decisions.</p>
+
+                    <h5 class="fw-bold mt-4">What We Offer</h5>
+                    <p class="text-secondary">Predictor provides a seamless experience by integrating:</p>
+                    <ul class="text-secondary">
+                        <li>Advanced charting and technical analysis tools</li>
+                        <li>Real-time market data for stocks, crypto, and forex</li>
+                        <li>AI-powered predictions and insights</li>
+                        <li>Stock screening and fundamental analysis platforms</li>
+                        <li>Strategy building and backtesting tools</li>
+                    </ul>
+                    <p class="text-secondary">Our platform eliminates the need to switch between multiple websites,
+                        saving time and improving efficiency.</p>
+
+                    <h5 class="fw-bold mt-4">Smart AI-Powered Insights</h5>
+                    <p class="text-secondary">At the core of Predictor is our intelligent system that analyzes market
+                        trends, price movements, and financial news to provide actionable insights. Our goal is to help
+                        users identify opportunities faster and manage risks more effectively.</p>
+
+                    <h5 class="fw-bold mt-4">Transparency & Responsibility</h5>
+                    <p class="text-secondary">We believe in transparency and responsible trading. Predictor is built to
+                        support your research and decision-making process.</p>
+                    <p class="text-danger small fw-bold">Disclaimer: We do not provide financial advice. All insights
+                        and tools are for educational and informational purposes only. Trading in financial markets
+                        involves risk.</p>
+
+                    <h5 class="fw-bold mt-4">Our Commitment</h5>
+                    <p class="text-secondary">We are committed to continuously improving our platform by adding new
+                        features, enhancing accuracy, and delivering a better user experience. Our focus is to build a
+                        reliable ecosystem that traders can trust every day.</p>
+                    <hr>
+                    <p class="text-center fw-bold text-primary">Predictor – Smarter Tools. Better Decisions.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div class="modal fade" id="tosModal" tabindex="-1" aria-labelledby="tosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="tosModalLabel">Terms of Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-secondary">Welcome to <strong>Predictor</strong>. By accessing or using our platform,
+                        you agree to comply with and be bound by the following Terms of Service. Please read them
+                        carefully.</p>
+
+                    <h6 class="fw-bold mt-3">1. Acceptance of Terms</h6>
+                    <p class="text-secondary small">By using Predictor, you confirm that you have read, understood, and
+                        agreed to these Terms. If you do not agree, you must not use our services.</p>
+
+                    <h6 class="fw-bold mt-3">2. Description of Services</h6>
+                    <p class="text-secondary small">Predictor provides a unified trading ecosystem that includes access
+                        to market data, analysis tools, AI-based insights, and links to third-party trading platforms.
+                        All information provided is for <strong>educational and informational purposes only</strong>.
+                    </p>
+
+                    <h6 class="fw-bold mt-3">3. No Financial Advice</h6>
+                    <p class="text-secondary small">Predictor does not provide financial, investment, or trading advice.
+                        All content, including AI-generated predictions, signals, and insights, should not be considered
+                        as professional advice. Users are solely responsible for their trading and investment decisions.
+                    </p>
+
+                    <h6 class="fw-bold mt-3">4. User Responsibilities</h6>
+                    <p class="text-secondary small">By using our platform, you agree to: Use the website for lawful
+                        purposes only; Not misuse, copy, or distribute platform content; Not attempt to hack or disrupt
+                        the platform; Verify all information before making financial decisions.</p>
+
+                    <h6 class="fw-bold mt-3">5. Third-Party Services</h6>
+                    <p class="text-secondary small">Predictor may include links to third-party platforms. We do not
+                        control or take responsibility for third-party content, trading outcomes, or any losses caused
+                        by third-party services. Users access them at their own risk.</p>
+
+                    <h6 class="fw-bold mt-3">6. Affiliate Disclosure</h6>
+                    <p class="text-secondary small">Predictor may participate in affiliate programs. This means we may
+                        earn a commission when users click on links or sign up for third-party services. This does not
+                        affect the cost to the user.</p>
+
+                    <h6 class="fw-bold mt-3">7. Intellectual Property</h6>
+                    <p class="text-secondary small">All content on Predictor is the property of Predictor. Unauthorized
+                        use, reproduction, or distribution is strictly prohibited.</p>
+
+                    <h6 class="fw-bold mt-3">8. Limitation of Liability</h6>
+                    <p class="text-secondary small">Predictor is not liable for financial losses, errors in data, or
+                        service interruptions. Use of the platform is at your own risk.</p>
+
+                    <hr>
+                    <p class="text-center small fw-bold">By using Predictor, you agree to these Terms of Service.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="privacyModalLabel">Privacy & Cookies Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-secondary">Welcome to <strong>Predictor</strong>. Your privacy is important to us.
+                        This policy explains how we collect and use your data.</p>
+
+                    <h6 class="fw-bold mt-3">1. Information We Collect</h6>
+                    <ul class="text-secondary small">
+                        <li><strong>Personal:</strong> Name and Email (if provided).</li>
+                        <li><strong>Non-Personal:</strong> Browser type, IP address, pages visited.</li>
+                    </ul>
+
+                    <h6 class="fw-bold mt-3">2. How We Use Your Information</h6>
+                    <p class="text-secondary small">To improve services, personalize user experience, and analyze
+                        website traffic.</p>
+
+                    <h6 class="fw-bold mt-3">3. Cookies Policy</h6>
+                    <p class="text-secondary small">We use cookies to remember user preferences, track performance, and
+                        deliver relevant content. You can manage cookies in your browser settings.</p>
+
+                    <h6 class="fw-bold mt-3">4. Data Protection</h6>
+                    <p class="text-secondary small">We take reasonable steps to protect your data, but no online
+                        platform can guarantee complete security.</p>
+
+                    <h6 class="fw-bold mt-3">5. Your Rights</h6>
+                    <p class="text-secondary small">You have the right to access, correct, or request deletion of your
+                        data.</p>
+
+                    <hr>
+                    <p class="text-center small fw-bold">By using Predictor, you agree to this Privacy & Cookies Policy.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Trading Fees Payment Modal -->
     <div class="modal fade" id="tradingFeesModal" tabindex="-1" aria-labelledby="tradingFeesModalLabel"
         aria-hidden="true">
@@ -1071,55 +1535,6 @@
         </div>
     </div>
 
-    <footer class="footer bg-body">
-        <div class="container-fluid" style="max-width: 1250px;">
-            <div class="row">
-                <div class="col-6 col-md-4">
-                    <!-- Synced Brand Location in Footer (Placed directly above Company links) -->
-                    <div id="footer-brand-container" class="hero-title-wrapper footer-brand"></div>
-
-                    <h4 class="footer-heading" style="margin-top: 20px;">Company</h4>
-                    <ul class="footer-list">
-                        <li><a href="#" class="footer-link">About Us</a></li>
-                        <li><a href="#" class="footer-link">Terms of Service</a></li>
-                        <li><a href="#" class="footer-link">Privacy & Cookies Policy</a></li>
-                        <li><a href="#" class="footer-link">Careers</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-4">
-                    <h4 class="footer-heading">Information</h4>
-                    <ul class="footer-list">
-                        <li><a href="#" class="footer-link">Contract Specifications</a></li>
-                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#tradingFeesModal" class="footer-link"
-                                style="cursor:pointer;">Trading Fees</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-4">
-                    <h4 class="footer-heading">Resources & Support</h4>
-                    <ul class="footer-list">
-                        <li><a href="#" class="footer-link">Support Center</a></li>
-                        <li><a href="#" class="footer-link">User Guide</a></li>
-                        <li><a href="#" class="footer-link">Referral Program</a></li>
-                        <li><a href="https://www.metatrader4.com/en/download" target="_blank" class="footer-link">Demo
-                                Trading - MT4</a></li>
-                        <li><a href="https://www.metatrader5.com/en/download" target="_blank" class="footer-link">Demo
-                                Trading - MT5</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-copy">
-                <p class="mb-2 fw-semibold" style="color: var(--bs-danger); font-size: 0.95rem;">
-                    ⚠️ DISCLAIMER: This platform is for educational purposes only. Not financial advice.
-                </p>
-                <p class="mb-0 text-secondary">
-                    &copy; 2026 Predictor Unified Trading Dashboard. For time management & easy access.
-                </p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle-btn" id="theme-btn" aria-label="Toggle Theme">
@@ -1193,9 +1608,9 @@
 
         function initParticles() {
             particlesArray = [];
-            // Decreased density by an additional 10%:divisor reached ~12422
-            let numberOfParticles = (canvas.height * canvas.width) / 12422;
-            if (numberOfParticles > 145) numberOfParticles = 145; // Reduced from 161 by ~10%
+            // Increased density by ~30%: divisor changed to ~9555
+            let numberOfParticles = (canvas.height * canvas.width) / 9555;
+            if (numberOfParticles > 189) numberOfParticles = 189; // Increased by ~30%
 
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
@@ -1389,7 +1804,7 @@
             `).join('');
         }
 
-        window.selectBroker = function(index) {
+        window.selectBroker = function (index) {
             updateBrokerCard(index);
         };
 
@@ -1433,7 +1848,7 @@
                                 </a>
                             </div>
                         </div>`;
-                    
+
                     // Toggle logout button on click
                     const nameBtn = document.getElementById('user-name-btn');
                     const logoutCont = document.getElementById('logout-btn-container');
@@ -1448,7 +1863,7 @@
                         });
                     }
                 }
-            }).catch(() => {});
+            }).catch(() => { });
     </script>
     <!-- News Modal -->
     <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
@@ -1456,9 +1871,18 @@
             <div class="modal-content" style="background: var(--bs-body-bg); border: 1px solid var(--bs-border-color);">
                 <div class="modal-header border-bottom border-secondary">
                     <h5 class="modal-title fw-bold" id="newsModalLabel">Global Market News</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
+                    <div class="news-filters" id="news-filters">
+                        <div class="filter-chip active" data-category="ALL">ALL</div>
+                        <div class="filter-chip" data-category="STOCKS">STOCKS</div>
+                        <div class="filter-chip" data-category="FNO">F&O</div>
+                        <div class="filter-chip" data-category="CRYPTO">CRYPTO</div>
+                        <div class="filter-chip" data-category="METALS">GOLD & SILVER</div>
+                        <div class="filter-chip" data-category="ECONOMY">GLOBAL ECONOMY</div>
+                    </div>
                     <div id="news-container" class="news-list">
                         <div class="p-4 text-center">
                             <div class="spinner-border text-primary" role="status">
@@ -1475,67 +1899,128 @@
         </div>
     </div>
 
-    <script src="/Static/js/chatbot.js?v=5"></script>
+
     <script>
         // News logic
         const newsBtn = document.getElementById('news-btn');
         const newsIndicator = document.getElementById('news-indicator');
         const newsContainer = document.getElementById('news-container');
+        const newsFilters = document.getElementById('news-filters');
 
-        const financeKeywords = ['trading', 'stocks', 'gold', 'silver', 'bitcoin', 'finance', 'market', 'bullish', 'bearish', 'fed', 'interest', 'dividend'];
-        
-        async function fetchFinanceNews() {
+        let currentNewsCategory = 'ALL';
+
+        async function fetchFinanceNews(category = 'ALL') {
+            currentNewsCategory = category;
+            newsContainer.innerHTML = '<div class="p-5 text-center"><div class="spinner-border text-primary" role="status"></div><p class="mt-2 text-secondary">Analyzing Market News...</p></div>';
+
             try {
-                // Using a fallback simulation since we don't have a reliable free client-side API key for NewsAPI here
-                // We'll simulate a fetch from the server or a public aggregate
-                const simulatedNews = [
-                    { title: "Bitcoin Surges Past $70k as Institutional Interest Peaks", category: "Crypto", sentiment: 0.8, time: "2m ago" },
-                    { title: "Gold Prices Hit Record High Amid Global Uncertainty", category: "Metals", sentiment: 0.6, time: "15m ago" },
-                    { title: "Major Tech Stocks See Slight Drop Following Fed Comments", category: "Stocks", sentiment: -0.4, time: "1h ago" },
-                    { title: "Silver Demand Expected to Rise in Q2 for Solar Panel Production", category: "Metals", sentiment: 0.5, time: "2h ago" },
-                    { title: "Market Volatility Rises as Inflation Data Looms", category: "Finance", sentiment: -0.2, time: "3h ago" },
-                    { title: "New Trading Regulations Could Impact Small-Cap Growth", category: "Trading", sentiment: -0.3, time: "5h ago" }
-                ];
+                const response = await fetch(`/api/news?category=${category}`);
+                const data = await response.json();
 
-                renderNews(simulatedNews);
-                updateSentimentBlink(simulatedNews);
+                if (data.status === 'success') {
+                    renderNews(data.news);
+                    if (category === 'ALL') updateSentimentBlink(data.news);
+                }
             } catch (error) {
                 console.error("News fetch error:", error);
-                newsContainer.innerHTML = '<div class="p-4 text-center text-danger">Failed to load news. Please try again.</div>';
+                newsContainer.innerHTML = '<div class="p-4 text-center text-danger">Failed to connect to news engine.</div>';
             }
         }
 
         function renderNews(articles) {
-            newsContainer.innerHTML = articles.map(article => `
+            if (articles.length === 0) {
+                newsContainer.innerHTML = '<div class="p-5 text-center text-muted">No specific news found for this category.</div>';
+                return;
+            }
+            newsContainer.innerHTML = articles.map(article => {
+                const trendIcon = article.trend === 'Bullish' ? '📈' : article.trend === 'Bearish' ? '📉' : '↔️';
+                const trendColor = article.trend === 'Bullish' ? 'text-success' : article.trend === 'Bearish' ? 'text-danger' : 'text-secondary';
+                const impactColor = article.impact === 'HIGH' ? 'text-danger' : article.impact === 'MEDIUM' ? 'text-warning' : 'text-info';
+                const readLink = (article.link && article.link !== '#') ? article.link : 'https://www.google.com/search?q=' + encodeURIComponent(article.title);
+
+                return `
                 <div class="news-item">
-                    <span class="news-tag bg-primary text-white">${article.category}</span>
-                    <span class="float-end text-muted small">${article.time}</span>
-                    <h6 class="mt-2 fw-semibold">${article.title}</h6>
-                    <div class="d-flex align-items-center gap-2 mt-1">
-                        <span class="small ${article.sentiment >= 0 ? 'text-success' : 'text-danger'}">
-                            Sentiment: ${article.sentiment >= 0 ? 'Positive' : 'Negative'}
+                    <div class="news-meta-row">
+                        <div>
+                            <span class="news-badge bg-primary text-white">${article.category}</span>
+                            <span class="text-muted small">${article.time}</span>
+                        </div>
+                        <div class="impact-tag ${impactColor}">
+                            ${article.impact === 'HIGH' ? '🔥' : '⚡'} IMPACT: ${article.impact}
+                        </div>
+                    </div>
+                    
+                    <h6 class="fw-bold mb-2" style="font-size: 1.05rem; line-height: 1.4;">${article.title}</h6>
+                    
+                    <div class="d-flex align-items-center gap-3 small mb-2">
+                        <span class="fw-bold ${article.sentiment_color === 'success' ? 'text-success' : article.sentiment_color === 'danger' ? 'text-danger' : 'text-secondary'}">
+                            ${article.sentiment === 'Positive' ? '✅' : article.sentiment === 'Negative' ? '❌' : '↔️'} ${article.sentiment}
+                        </span>
+                        <span class="fw-bold ${trendColor}">
+                            ${trendIcon} ${article.trend}
+                        </span>
+                        <span class="text-secondary" style="margin-left:auto;">
+                            📰 <strong>${article.source}</strong>
                         </span>
                     </div>
+
+                    <div class="news-analysis">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small fw-bold text-uppercase text-secondary">AI Analysis</span>
+                            <span class="badge ${article.ai_signal === 'BUY' ? 'bg-success' : article.ai_signal === 'SELL' ? 'bg-danger' : 'bg-secondary'} px-2">
+                                ${article.ai_signal} · ${article.confidence}
+                            </span>
+                        </div>
+                        <p class="small text-secondary mb-0"><strong>Affects:</strong> ${article.affects}.</p>
+                    </div>
+
+                    <div class="news-action-btns">
+                        <a href="${readLink}" target="_blank" rel="noopener noreferrer" class="news-btn-sm bg-primary text-white" style="display:flex;align-items:center;justify-content:center;gap:5px;">
+                            📰 Read Full Article
+                        </a>
+                        <a href="#" onclick="openTrade('${article.category}'); return false;" class="news-btn-sm border text-body" style="display:flex;align-items:center;justify-content:center;gap:5px;">
+                            💸 Trade Now
+                        </a>
+                    </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
+        }
+
+        function openTrade(cat) {
+            // Smart redirection based on news category
+            if (cat === 'CRYPTO') window.open('https://www.binance.com/', '_blank');
+            else if (cat === 'METALS') window.open('https://www.moneycontrol.com/commodity/', '_blank');
+            else window.open('https://web.angelone.in/', '_blank');
         }
 
         function updateSentimentBlink(articles) {
-            const avgSentiment = articles.reduce((sum, a) => sum + a.sentiment, 0) / articles.length;
-            
+            const positives = articles.filter(a => a.sentiment === 'Positive').length;
+            const negatives = articles.filter(a => a.sentiment === 'Negative').length;
+
             newsIndicator.classList.remove('blink-positive', 'blink-negative');
-            if (avgSentiment > 0.1) {
+            if (positives > negatives) {
                 newsIndicator.classList.add('blink-positive');
-            } else if (avgSentiment < -0.1) {
+            } else if (negatives > positives) {
                 newsIndicator.classList.add('blink-negative');
             }
+        }
+
+        // Filter Click Events
+        if (newsFilters) {
+            newsFilters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-chip')) {
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+                    fetchFinanceNews(e.target.getAttribute('data-category'));
+                }
+            });
         }
 
         // Initialize News
         window.addEventListener('load', () => {
             fetchFinanceNews();
-            // Periodic refresh
-            setInterval(fetchFinanceNews, 600000); // every 10 mins
+            setInterval(() => fetchFinanceNews(currentNewsCategory), 300000); // refresh every 5 minutes
         });
     </script>
 </body>
