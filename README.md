@@ -1,4 +1,4 @@
-# Predictor.com - Stock Price Prediction Web Application
+# Predictor.com - Stock Price Prediction Web Application 
 
 A Flask-based web application that predicts stock prices using LSTM (Long Short-Term Memory) neural networks. The app provides interactive charts, exponential moving averages, and downloadable datasets.
 
