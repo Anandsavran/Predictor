@@ -4,7 +4,7 @@ A Flask-based web application that predicts stock prices using LSTM (Long Short-
 
 ## Features
 
-- 📈 **Stock Price Prediction**: Uses deep learning LSTM model to predict stock prices
+- 📈 **Stock Price Prediction**: Uses deep learning LSTM model to predict stock prices 
 - 📊 **Interactive Charts**: Visualizes closing prices with EMA (20, 50, 100, 200 days)
 - 📉 **Prediction Comparison**: Compares predicted vs actual prices
 - 💾 **Data Export**: Download stock datasets as CSV files
